@@ -32,7 +32,7 @@
    $psScriptPath = "C:\\Users\\User\\Documents\\Scripts\\Printercreate.ps1";
 
    // Execute the PowerShell script, passing the parameters:
-   $query = exec("powershell.exe -ExecutionPolicy ByPass -File \'$psScriptPath $servername $drivername $IPAddress $printername\'< NUL");
+   $query = passthru("powershell.exe -ExecutionPolicy ByPass -Command Invoke-Command -ComputerName $servername -FilePath $psScriptPath -ArgumentList $drivername,$IPAddress,$printername -Credential $creds 2>&1");
    echo $query;    
 
 ?>
